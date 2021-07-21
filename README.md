@@ -12,3 +12,4 @@ These are copied from elsewhere on the Internet and the original source will be 
 * [Reduce disk bloat in PostgreSQL](https://www.redpill-linpro.com/sysadvent/2017/12/08/pg_repack.html)
 * [Annotated.conf](https://github.com/jberkus/annotated.conf)
 * [Postgres Index stats and Query Optimization](https://sgerogia.github.io/Postgres-Index-And-Queries/)
+* [Some SQL Tricks of an Application DBA](https://hakibenita.com/sql-tricks-application-dba)
