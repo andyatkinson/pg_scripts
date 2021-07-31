@@ -1,5 +1,7 @@
 -- http://www.databasesoup.com/2014/05/new-finding-unused-indexes-query.html
 
+-- I use this for bloat estimate on indexes as well
+
 WITH btree_index_atts AS (
     SELECT nspname, relname, reltuples, relpages, indrelid, relam,
         regexp_split_to_table(indkey::text, ' ')::smallint AS attnum,
