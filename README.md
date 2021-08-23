@@ -8,7 +8,7 @@ These are copied from elsewhere on the Internet and the original source will be 
 
 ### Table stats
 
-`table_stats.sql` - [pg_stats docs](https://www.postgresql.org/docs/9.3/view-pg-stats.html) get statistics on the rows in the table PG collects, such as the most common values, and the most common frequencies.
+`table_stats.sql` - [pg_stats docs](https://www.postgresql.org/docs/9.3/view-pg-stats.html) get statistics on the rows in the table PG collects, such as the most common values, and the most common frequencies. I use this to see if there are any values that occur most of the time, and compare that with what is indexed and what is queried. Indexes are best when they are highly selective.
 
 ## Links
 
@@ -19,3 +19,4 @@ These are copied from elsewhere on the Internet and the original source will be 
 * [Annotated.conf](https://github.com/jberkus/annotated.conf)
 * [Postgres Index stats and Query Optimization](https://sgerogia.github.io/Postgres-Index-And-Queries/)
 * [Some SQL Tricks of an Application DBA](https://hakibenita.com/sql-tricks-application-dba)
+* [Lessons Learned From 5 Years of Scaling PostgreSQL](https://onesignal.com/blog/lessons-learned-from-5-years-of-scaling-postgresql/)
