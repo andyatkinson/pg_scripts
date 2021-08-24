@@ -1,18 +1,20 @@
 # PG Scripts
 
-SQL scripts for PostgreSQL to help with maintenance, analysis, and other "Application DBA" concerns.
+Queries and scripts for PostgreSQL to help with maintenance, analysis, and other "Application DBA" concerns.
 
-These are copied from elsewhere on the Internet and the original source will be credited.
+These are copied from elsewhere on the Internet and the original source will be credited as a line comment in the file.
 
-## Scripts
+I also am adding interesting links I've used over time to the bottom of this file.
 
-### Table stats
+## Names and Descriptions
 
-`relation_size.sql` - I use this to check that an index build completed fully and is not a zero bytes index
+Calling out some specifc ways I've used these.
 
-`create_index_create_statement.sql` - get the `CREATE INDEX` statement from an existing index. I use this when an index build fails but the same index exists in another environment (e.g. pre-prod) and I want to manually apply the same statement
+* `relation_size.sql` - I use this to check that an index build completed fully and is not a zero bytes index
 
-`table_stats.sql` - [pg_stats docs](https://www.postgresql.org/docs/9.3/view-pg-stats.html) get statistics on the rows in the table PG collects, such as the most common values, and the most common frequencies. I use this to see if there are any values that occur most of the time, and compare that with what is indexed and what is queried. Indexes are best when they are highly selective.
+* `create_index_create_statement.sql` - get the `CREATE INDEX` statement from an existing index. I use this when an index build fails but the same index exists in another environment (e.g. pre-prod) and I want to manually apply the same statement
+
+* `table_stats.sql` - [pg_stats docs](https://www.postgresql.org/docs/9.3/view-pg-stats.html) get statistics on the rows in the table PG collects, such as the most common values, and the most common frequencies. I use this to see if there are any values that occur most of the time, and compare that with what is indexed and what is queried. Indexes are best when they are highly selective.
 
 ## Links
 
