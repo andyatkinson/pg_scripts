@@ -18,6 +18,8 @@ Calling out some specifc ways I've used these.
 
 * `detect_transaction_id_wraparound.sql`
 
+* `percent_not_null`: Can be used to determine proportion of total rows where a particular field is null. Help determine selectivity of field and whether partial index is a good fit.
+
 ## Links
 
 * [Deep dive into postgres stats: pg_stat_all_tables](https://dataegret.com/2017/04/deep-dive-into-postgres-stats-pg_stat_all_tables/)
