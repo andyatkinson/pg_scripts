@@ -1,8 +1,12 @@
 # https://stackoverflow.com/a/11870348
 
->psql dbname
-psql>\f ','
-psql>\a
-psql>\o '/tmp/output.csv'
-psql>SELECT * from users;
-psql>\q
+# >psql dbname
+# psql>\f ','
+# psql>\a
+# psql>\o '/tmp/output.csv'
+# psql>SELECT * from users;
+# psql>\q
+
+\f ','
+\a
+\o '/tmp/output.csv'
