@@ -26,6 +26,8 @@ Calling out some specifc ways I've used these.
 
 * `psql_csv_output.csv` - From `psql`, format a query output as CSV and send it to a file
 
+* `view_extensions.sql` - View installed extensions names and versions
+
 ## Links
 
 * [Deep dive into postgres stats: pg_stat_all_tables](https://dataegret.com/2017/04/deep-dive-into-postgres-stats-pg_stat_all_tables/)
