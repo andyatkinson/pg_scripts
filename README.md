@@ -10,6 +10,8 @@ I also am adding interesting links I've used over time to the bottom of this fil
 
 Calling out some specifc ways I've used these.
 
+* `list_comments.sql` - List fields that have been commented, and their comment content
+
 * `index_analysis_and_bloat_estimate.sql` - I use this to check index bloat estimate and index scans
 
 * `find_unused_indexes.sql` - I use this to find unused indexes that can likely be removed
