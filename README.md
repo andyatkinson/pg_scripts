@@ -32,6 +32,8 @@ Calling out some specifc ways I've used these.
 
 * `list_indexes.sql` - List the indexes for a table
 
+* `list_partitioned_tables.sql` (`\dP`) - Get all ordinary tables, including root partitioned tables, but excluding all non-root partitioned tables.
+
 ## Links
 
 * [Deep dive into postgres stats: pg_stat_all_tables](https://dataegret.com/2017/04/deep-dive-into-postgres-stats-pg_stat_all_tables/)
