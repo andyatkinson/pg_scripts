@@ -34,6 +34,8 @@ Calling out some specifc ways I've used these.
 
 * `list_partitioned_tables.sql` (`\dP`) - Get all ordinary tables, including root partitioned tables, but excluding all non-root partitioned tables.
 
+* `list_schemata.sql` - List the schemas
+
 ## Links
 
 * [Deep dive into postgres stats: pg_stat_all_tables](https://dataegret.com/2017/04/deep-dive-into-postgres-stats-pg_stat_all_tables/)
