@@ -6,6 +6,10 @@ These are copied from elsewhere on the Internet and the original source will be 
 
 I also am adding interesting links I've used over time to the bottom of this file.
 
+## psql
+
+* `\dn` - list schemas
+
 ## Names and Descriptions
 
 Calling out some specifc ways I've used these.
