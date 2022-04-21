@@ -40,6 +40,10 @@ Calling out some specifc ways I've used these.
 
 * `list_schemata.sql` - List the schemas
 
+* Cancel and terminate backend process IDs (PIDs)
+
+* `waiting_queries.sql` - View waiting queries
+
 ## Links
 
 * [Deep dive into postgres stats: pg_stat_all_tables](https://dataegret.com/2017/04/deep-dive-into-postgres-stats-pg_stat_all_tables/)
@@ -50,3 +54,4 @@ Calling out some specifc ways I've used these.
 * [Postgres Index stats and Query Optimization](https://sgerogia.github.io/Postgres-Index-And-Queries/)
 * [Some SQL Tricks of an Application DBA](https://hakibenita.com/sql-tricks-application-dba)
 * [Lessons Learned From 5 Years of Scaling PostgreSQL](https://onesignal.com/blog/lessons-learned-from-5-years-of-scaling-postgresql/)
+* [Understanding PostgreSQL Query Performance](https://pgdash.io/blog/understanding-postgres-query-performance.html)
