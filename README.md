@@ -55,3 +55,19 @@ Calling out some specifc ways I've used these.
 * [Some SQL Tricks of an Application DBA](https://hakibenita.com/sql-tricks-application-dba)
 * [Lessons Learned From 5 Years of Scaling PostgreSQL](https://onesignal.com/blog/lessons-learned-from-5-years-of-scaling-postgresql/)
 * [Understanding PostgreSQL Query Performance](https://pgdash.io/blog/understanding-postgres-query-performance.html)
+
+## Write rate
+
+* From [Crunchy Data Postgres Tips](https://www.crunchydata.com/postgres-tips), for manually building indexes, can temporarily increase the maintenance work memory, e.g.
+
+`SET maintenance_work_mem = '1GB';`
+
+## Other Misc. Tips
+
+* Log lock waits. I also wonder if there could be a feature like logging slow statements, but logging only long lock waits as opposed to logging all lock waits if this is too noisy.
+
+`ALTER DATABASE postgres SET log_lock_waits = 'on'`
+
+* Continually run a query with `\watch`
+* Border style, can also specify it when running a command via `-c`: `psql -P linestyle=unicode -P border=2 -c "select 1 as col"`
+
