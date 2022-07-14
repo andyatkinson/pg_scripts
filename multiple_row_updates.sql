@@ -48,3 +48,25 @@ from (values
     (1, 2)
 ) as li2(id, position)
 where li2.id = li.id;
+
+-- note that after the statement above, sorting the list items
+-- by primary key id ascending order, we see the positions of 2 and 1
+-- have swapped now, so row 1 is now in position "2",
+-- and row 2 (pk: 2) is now in position "1"
+
+-- [local]:5432 experiments# select * from list_items order by id asc;
+-- +----+---------+----------+
+-- | id | list_id | position |
+-- +----+---------+----------+
+-- |  1 |       1 |        2 |
+-- |  2 |       1 |        1 |
+-- |  3 |       1 |        3 |
+-- |  4 |       1 |        4 |
+-- |  5 |       1 |        5 |
+-- |  6 |       1 |        6 |
+-- |  7 |       1 |        7 |
+-- |  8 |       1 |        8 |
+-- |  9 |       1 |        9 |
+-- | 10 |       1 |       10 |
+-- +----+---------+----------+
+-- (10 rows)
