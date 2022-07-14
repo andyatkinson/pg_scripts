@@ -44,6 +44,8 @@ Calling out some specifc ways I've used these.
 
 * `waiting_queries.sql` - View waiting queries
 
+* `multiple_row_updates.sql` - How to update column values for multiple rows in a single UPDATE statement
+
 ## Links
 
 * [Deep dive into postgres stats: pg_stat_all_tables](https://dataegret.com/2017/04/deep-dive-into-postgres-stats-pg_stat_all_tables/)
