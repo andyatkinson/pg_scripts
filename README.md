@@ -12,39 +12,25 @@ I also am adding interesting links I've used over time to the bottom of this fil
 
 ## Names and Descriptions
 
-Calling out some specifc ways I've used these.
+Calling out some specific ways I've used these.
 
 * `list_comments.sql` - List fields that have been commented, and their comment content
-
 * `index_analysis_and_bloat_estimate.sql` - I use this to check index bloat estimate and index scans
-
 * `find_unused_indexes.sql` - I use this to find unused indexes that can likely be removed
-
 * `relation_size.sql` - I use this to check that an index build completed fully and is not a zero bytes index
-
 * `create_index_create_statement.sql` - get the `CREATE INDEX` statement from an existing index. I use this when an index build fails but the same index exists in another environment (e.g. pre-prod) and I want to manually apply the same statement
-
 * `table_stats.sql` - [pg_stats docs](https://www.postgresql.org/docs/9.3/view-pg-stats.html) get statistics on the rows in the table PG collects, such as the most common values, and the most common frequencies. I use this to see if there are any values that occur most of the time, and compare that with what is indexed and what is queried. Indexes are best when they are highly selective.
-
 * `detect_transaction_id_wraparound.sql` - Detect transaction ID wraparound
-
 * `percent_not_null`: Can be used to determine proportion of total rows where a particular field is null. Help determine selectivity of field and whether partial index is a good fit.
-
 * `psql_csv_output.csv` - From `psql`, format a query output as CSV and send it to a file
-
 * `view_extensions.sql` - View installed extensions names and versions
-
 * `list_indexes.sql` - List the indexes for a table
-
 * `list_partitioned_tables.sql` (`\dP`) - Get all ordinary tables, including root partitioned tables, but excluding all non-root partitioned tables.
-
 * `list_schemata.sql` - List the schemas
-
 * Cancel and terminate backend process IDs (PIDs)
-
 * `waiting_queries.sql` - View waiting queries
-
 * `multiple_row_updates.sql` - How to update column values for multiple rows in a single UPDATE statement
+* `list_db_views.sql` - List DB views, with system views excluded
 
 ## Links
 
@@ -72,4 +58,3 @@ Calling out some specifc ways I've used these.
 
 * Continually run a query with `\watch`
 * Border style, can also specify it when running a command via `-c`: `psql -P linestyle=unicode -P border=2 -c "select 1 as col"`
-
