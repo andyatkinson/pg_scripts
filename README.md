@@ -31,6 +31,7 @@ Calling out some specific ways I've used these.
 * `waiting_queries.sql` - View waiting queries
 * `multiple_row_updates.sql` - How to update column values for multiple rows in a single UPDATE statement
 * `list_db_views.sql` - List DB views, with system views excluded
+* `list_enums.sql` - List enum types in PostgreSQL, including schema, name, and values
 
 ## Links
 
