@@ -12,8 +12,7 @@ I also am adding interesting links I've used over time to the bottom of this fil
 
 ## Names and Descriptions
 
-Calling out some specific ways I've used these.
-
+* `find_indexed_columns_high_null_frac.sql` - From Haki, identify partial index opportunities
 * `list_comments.sql` - List fields that have been commented, and their comment content
 * `index_analysis_and_bloat_estimate.sql` - I use this to check index bloat estimate and index scans
 * `find_unused_indexes.sql` - I use this to find unused indexes that can likely be removed
@@ -44,8 +43,9 @@ Calling out some specific ways I've used these.
 * [Some SQL Tricks of an Application DBA](https://hakibenita.com/sql-tricks-application-dba)
 * [Lessons Learned From 5 Years of Scaling PostgreSQL](https://onesignal.com/blog/lessons-learned-from-5-years-of-scaling-postgresql/)
 * [Understanding PostgreSQL Query Performance](https://pgdash.io/blog/understanding-postgres-query-performance.html)
+* [The Unexpected Find That Freed 20GB of Unused Index Space](https://hakibenita.com/postgresql-unused-index-size#clearing-bloat-in-indexes)
 
-## Write rate
+## Write Rate
 
 * From [Crunchy Data Postgres Tips](https://www.crunchydata.com/postgres-tips), for manually building indexes, can temporarily increase the maintenance work memory, e.g.
 
