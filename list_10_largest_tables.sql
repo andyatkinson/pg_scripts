@@ -1,3 +1,4 @@
+-- https://dataedo.com/kb/query/postgresql/list-10-largest-tables
 -- List 10 largest tables
 SELECT
   schemaname AS table_schema,
