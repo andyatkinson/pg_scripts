@@ -1,5 +1,5 @@
 ---https://dba.stackexchange.com/a/39758
-select * 
-from pg_stat_activity
-where (state = 'idle in transaction')
-    and xact_start is not null;
+SELECT *
+FROM pg_stat_activity
+WHERE (state = 'idle in transaction')
+AND xact_start IS NOT NULL;

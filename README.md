@@ -12,6 +12,7 @@ I also am adding interesting links I've used over time to the bottom of this fil
 
 ## Names and Descriptions
 
+* `list_long_running_queries.sql` - List long running queries
 * `find_indexed_columns_high_null_frac.sql` - From Haki, identify partial index opportunities
 * `list_comments.sql` - List fields that have been commented, and their comment content
 * `index_analysis_and_bloat_estimate.sql` - I use this to check index bloat estimate and index scans
