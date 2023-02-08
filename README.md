@@ -36,6 +36,7 @@ I also am adding interesting links I've used over time to the bottom of this fil
 * `multiple_row_updates.sql` - How to update column values for multiple rows in a single UPDATE statement
 * `list_db_views.sql` - List DB views, with system views excluded
 * `list_enums.sql` - List enum types in PostgreSQL, including schema, name, and values
+* `show_server_version_num.sql` - Show server version number, e.g. 130008
 
 ## Links
 
