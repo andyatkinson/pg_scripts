@@ -59,9 +59,15 @@ I also am adding interesting links I've used over time to the bottom of this fil
 
 ## Other Misc. Tips
 
-* Log lock waits. I also wonder if there could be a feature like logging slow statements, but logging only long lock waits as opposed to logging all lock waits if this is too noisy.
+* Log lock waits
 
 `ALTER DATABASE postgres SET log_lock_waits = 'on'`
 
 * Continually run a query with `\watch`
-* Border style, can also specify it when running a command via `-c`: `psql -P linestyle=unicode -P border=2 -c "select 1 as col"`
+* Border style, can also specify it when running a command via `-c`
+
+```sh
+psql -P linestyle=unicode -P border=2 -c "select 1 as col"`
+```
+
+* `table` command short for `select * from table`
