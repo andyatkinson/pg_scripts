@@ -37,6 +37,7 @@ I also am adding interesting links I've used over time to the bottom of this fil
 * `list_db_views.sql` - List DB views, with system views excluded
 * `list_enums.sql` - List enum types in PostgreSQL, including schema, name, and values
 * `show_server_version_num.sql` - Show server version number, e.g. 130008
+* `find_replica_identity.sql` - Find replica identity
 
 ## Links
 
