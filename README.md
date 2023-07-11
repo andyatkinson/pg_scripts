@@ -41,6 +41,7 @@ I also am adding interesting links I've used over time to the bottom of this fil
 * `show_server_version_num.sql` - Show server version number, e.g. 130008
 * `find_replica_identity.sql` - Find replica identity
 * `constraint_definition_ddl.sql` - Find constraint definition
+* `list_all_sequences_column_owner.sql` - List sequences with table and column owner
 
 ## Links
 
