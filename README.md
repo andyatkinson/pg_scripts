@@ -16,6 +16,7 @@ I also am adding interesting links I've used over time to the bottom of this fil
 
 ## Names and Descriptions
 
+* `table_with_column.sql` - Find all tables with specified column name
 * `list_10_largest_tables.sql` - List 10 largest tables
 * `list_long_running_queries.sql` - List long running queries
 * `find_indexed_columns_high_null_frac.sql` - From Haki, identify partial index opportunities
