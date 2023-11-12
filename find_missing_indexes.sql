@@ -1,13 +1,14 @@
+-- Find missing indexes (look at seq_scan counts)
 -- https://stackoverflow.com/a/12818168/126688
 SELECT
   relname                                               AS TableName,
-  to_char(seq_scan, '999,999,999,999')                  AS TotalSeqScan,
-  to_char(idx_scan, '999,999,999,999')                  AS TotalIndexScan,
-  to_char(n_live_tup, '999,999,999,999')                AS TableRows,
-  pg_size_pretty(pg_relation_size(relname :: regclass)) AS TableSize
+  TO_CHAR(seq_scan, '999,999,999,999')                  AS TotalSeqScan,
+  TO_CHAR(idx_scan, '999,999,999,999')                  AS TotalIndexScan,
+  TO_CHAR(n_live_tup, '999,999,999,999')                AS TableRows,
+  PG_SIZE_PRETTY(PG_RELATION_SIZE(relname::REGCLASS))   AS TableSize
 FROM pg_stat_all_tables
-WHERE schemaname = 'public' -- change to your schema if not 'public'
-      AND 50 * seq_scan > idx_scan -- more than 2%
-      AND n_live_tup > 10000
-      AND pg_relation_size(relname :: regclass) > 5000000
-ORDER BY relname ASC;
+WHERE schemaname = 'public' -- change schema name, i.e. 'rideshare' if not 'public'
+  -- AND 50 * seq_scan > idx_scan -- more than 2%, add filters to narrow down results
+  -- AND n_live_tup > 10000 -- narrow down results for bigger tables
+  -- AND pg_relation_size(relname::REGCLASS) > 5000000
+ORDER BY totalseqscan DESC;
