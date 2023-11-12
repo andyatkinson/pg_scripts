@@ -6,7 +6,7 @@ SELECT
   to_char(n_live_tup, '999,999,999,999')                AS TableRows,
   pg_size_pretty(pg_relation_size(relname :: regclass)) AS TableSize
 FROM pg_stat_all_tables
-WHERE schemaname = 'public'
+WHERE schemaname = 'public' -- change to your schema if not 'public'
       AND 50 * seq_scan > idx_scan -- more than 2%
       AND n_live_tup > 10000
       AND pg_relation_size(relname :: regclass) > 5000000
