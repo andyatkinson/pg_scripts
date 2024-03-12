@@ -43,6 +43,7 @@ I also am adding interesting links I've used over time to the bottom of this fil
 * `find_replica_identity.sql` - Find replica identity
 * `constraint_definition_ddl.sql` - Find constraint definition
 * `list_all_sequences_column_owner.sql` - List sequences with table and column owner
+* `per_table_options_reloptions_all_regular_tables.sql` - List options set in reloptions, for all regular tables in database
 
 ## Links
 
