@@ -17,14 +17,17 @@ ORDER BY
     nspname,
     relname;
 
---  schema_name |      table_name      |    option_name     | option_value
--- -------------+----------------------+--------------------+--------------
---  rideshare   | ar_internal_metadata |                    |
---  rideshare   | locations            |                    |
---  rideshare   | schema_migrations    |                    |
---  rideshare   | trip_positions       |                    |
---  rideshare   | trip_requests        |                    |
---  rideshare   | trips                |                    |
---  rideshare   | users                | autovacuum_enabled | false
---  rideshare   | vehicle_reservations |                    |
---  rideshare   | vehicles             |
+
+-- E.g. ALTER TABLE trips SET (autovacuum_vacuum_scale_factor = 0.01);
+
+--  schema_name |      table_name      |          option_name           | option_value
+-- -------------+----------------------+--------------------------------+--------------
+--  rideshare   | ar_internal_metadata |                                |
+--  rideshare   | locations            |                                |
+--  rideshare   | schema_migrations    |                                |
+--  rideshare   | trip_positions       |                                |
+--  rideshare   | trip_requests        |                                |
+--  rideshare   | trips                | autovacuum_vacuum_scale_factor | 0.01
+--  rideshare   | users                | autovacuum_enabled             | false
+--  rideshare   | vehicle_reservations |                                |
+--  rideshare   | vehicles             |                                |
