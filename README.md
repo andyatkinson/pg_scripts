@@ -81,4 +81,4 @@ psql -P linestyle=unicode -P border=2 -c "select 1 as col"`
 
 ## Administration
 
-Check out the `/administration` folder, where you'll find scripts like `tail_log.sh`
+Check out the [`administration`](/administration) folder, where you'll find scripts like `tail_log.sh`.
