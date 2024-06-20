@@ -1,7 +1,5 @@
 -- http://www.databasesoup.com/2014/05/new-finding-unused-indexes-query.html
-
 -- I use this for bloat estimate on indexes as well
-
 WITH btree_index_atts AS (
     SELECT nspname, relname, reltuples, relpages, indrelid, relam,
         regexp_split_to_table(indkey::text, ' ')::smallint AS attnum,
@@ -83,5 +81,7 @@ SELECT dbname as database_name, nspname as schema_name, table_name, index_name,
         table_bytes, pg_size_pretty(table_bytes) as table_size,
         index_scans
 FROM raw_bloat
-WHERE ( realbloat > 50 and wastedbytes > 50000000 )
-ORDER BY wastedbytes DESC;
+-- Filter it down a bit this way:
+--WHERE ( realbloat > 50 and wastedbytes > 50000000 )
+ORDER BY wastedbytes DESC
+LIMIT 10; -- Remove this limit if wanting more rows
