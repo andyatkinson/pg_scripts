@@ -12,3 +12,19 @@ WHERE schemaname = 'public' -- change schema name, i.e. 'rideshare' if not 'publ
   -- AND n_live_tup > 10000 -- narrow down results for bigger tables
   -- AND pg_relation_size(relname::REGCLASS) > 5000000
 ORDER BY totalseqscan DESC;
+
+
+-- missing indexes from GCP docs:
+-- Optimize CPU usage
+-- https://cloud.google.com/sql/docs/postgres/optimize-cpu-usage
+SELECT
+    relname,
+    idx_scan,
+    seq_scan,
+    n_live_tup
+FROM
+    pg_stat_user_tables
+WHERE
+    seq_scan > 0
+ORDER BY
+    n_live_tup DESC;
