@@ -1,21 +1,15 @@
-# PG Scripts
+# PostgreSQL Scripts (`pg_scripts`)
+Scripts and queries for PostgreSQL to help with analysis, maintenance, and other "Application DBA" concerns.
 
-Queries and scripts for PostgreSQL to help with maintenance, analysis, and other "Application DBA" concerns.
-
-These are copied from elsewhere on the Internet and the original source will be credited as a line comment in the file.
-
-I also am adding interesting links I've used over time to the bottom of this file.
+These are copied from elsewhere on the Internet and the original source was credited. Or they were adapted by me.
 
 ## General Tips
-
 - Use `\watch` on the end of a query to keep running it
 
 ## psql
-
 * `\dn` - list schemas
 
 ## Names and Descriptions
-
 * `table_with_column.sql` - Find all tables with specified column name
 * `list_10_largest_tables.sql` - List 10 largest tables
 * `list_long_running_queries.sql` - List long running queries
@@ -60,13 +54,11 @@ I also am adding interesting links I've used over time to the bottom of this fil
 * [The Unexpected Find That Freed 20GB of Unused Index Space](https://hakibenita.com/postgresql-unused-index-size#clearing-bloat-in-indexes)
 
 ## Write Rate
-
 * From [Crunchy Data Postgres Tips](https://www.crunchydata.com/postgres-tips), for manually building indexes, can temporarily increase the maintenance work memory, e.g.
 
 `SET maintenance_work_mem = '1GB';`
 
 ## Other Misc. Tips
-
 * Log lock waits
 
 `ALTER DATABASE postgres SET log_lock_waits = 'on'`
@@ -81,5 +73,4 @@ psql -P linestyle=unicode -P border=2 -c "select 1 as col"`
 * `table` command short for `select * from table`
 
 ## Administration
-
 Check out the [`administration`](/administration) folder, where you'll find scripts like `tail_log.sh`.

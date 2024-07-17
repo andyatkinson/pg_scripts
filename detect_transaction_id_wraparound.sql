@@ -29,4 +29,12 @@ FROM per_database_stats;
 --
 -- Potential fix is to: `vacuum freeze <table>` the specific tables
 --
-select relname,age(relfrozenxid),pg_size_pretty(pg_relation_size(oid)) as size from pg_Class where age(relfrozenxid) > 190000000 and relkind = 'r';
+SELECT
+    relname,
+    age(relfrozenxid),
+    pg_size_pretty(pg_relation_size(oid)) AS size
+FROM
+    pg_Class
+WHERE
+    age(relfrozenxid) > 190000000
+    AND relkind = 'r';
