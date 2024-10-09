@@ -1,2 +1,7 @@
 -- https://dba.stackexchange.com/a/23837
-select table_name from INFORMATION_SCHEMA.views WHERE table_schema = ANY (current_schemas(false));
+SELECT
+    table_name
+FROM
+    information_schema.views
+WHERE
+    table_schema = ANY(current_schemas(FALSE));

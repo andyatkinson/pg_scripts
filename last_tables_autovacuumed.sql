@@ -1,1 +1,11 @@
-SELECT relname, last_vacuum, last_autovacuum FROM pg_stat_user_tables where last_autovacuum is not null order by last_autovacuum DESC limit 10;
+SELECT
+    relname,
+    last_vacuum,
+    last_autovacuum
+FROM
+    pg_stat_user_tables
+WHERE
+    last_autovacuum IS NOT NULL
+ORDER BY
+    last_autovacuum DESC
+LIMIT 10;
