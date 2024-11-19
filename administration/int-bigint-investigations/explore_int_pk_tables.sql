@@ -1,3 +1,9 @@
+
+-- pg_constraint docs
+-- https://www.postgresql.org/docs/current/catalog-pg-constraint.html
+-- contype char
+-- c = check constraint, f = foreign key constraint, n = not-null constraint (domains only), p = primary key constraint, u = unique constraint, t = constraint trigger, x = exclusion constraint
+
 SELECT
     n.nspname AS table_schema,
     c.relname AS table_name,
