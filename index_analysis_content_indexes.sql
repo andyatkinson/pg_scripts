@@ -36,7 +36,6 @@ LEFT JOIN
     pg_constraint con ON con.conindid = pg_index.indexrelid
 WHERE
     n.nspname = 'public'
--- https://mohyusufz.medium.com/how-to-check-for-indexes-on-foreign-key-columns-in-postgresql-450159772f8e#:~:text=Checking%20for%20Indexes%3A,%2C%20it%20displays%20%22Unindexed.%22
     AND NOT pg_index.indisprimary
     AND con.contype IS NULL; -- Excludes indexes associated with constraints
 
