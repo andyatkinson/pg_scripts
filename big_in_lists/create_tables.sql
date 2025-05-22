@@ -121,6 +121,17 @@ SELECT title
 FROM books
 JOIN ids USING (author_id);
 
+
+-- Temp table
+CREATE TEMP TABLE temp_ids (author_id int);
+INSERT INTO temp_ids(author_id) VALUES (1),(2),(3);
+CREATE INDEX ON temp_ids(author_id);
+
+SELECT title
+FROM books b
+JOIN temp_ids t ON t.author_id = b.author_id;
+
+
 -- subquery version
 EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
 SELECT title
