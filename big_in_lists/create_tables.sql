@@ -77,3 +77,107 @@ LEFT OUTER JOIN authors ON authors.id = books.author_id;
 CREATE INDEX IF NOT EXISTS idx_books_aid_title ON books (author_id, title);
 
 -- Now we get an index only scan using "idx_books_aid_title"
+
+-- What about ANY / SOME
+EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
+WITH author_ids AS (
+  SELECT id FROM authors
+)
+SELECT title
+FROM books
+WHERE author_id = ANY (
+      SELECT id
+      FROM author_ids);
+
+EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
+WITH author_ids AS (
+SELECT
+    id
+FROM
+    authors
+)
+select title from books
+where author_id = SOME(select id from author_ids); -- <- SOME
+
+
+-- Using ANY with a "<" operator
+EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
+WITH author_ids AS (
+SELECT
+    id
+FROM
+    authors
+)
+select title from books
+where author_id < ANY(select id from author_ids where id <= 10); -- <- ANY
+
+
+-- VALUES clause
+EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
+WITH ids(author_id) AS (
+  VALUES(1),(2),(3)
+)
+SELECT title
+FROM books
+JOIN ids USING (author_id);
+
+-- subquery version
+EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
+SELECT title
+FROM books
+WHERE author_id IN (
+  SELECT id
+  FROM (VALUES(1),(2),(3)) AS v(id)
+);
+
+
+-- ANY with an ARRAY
+EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
+SELECT title
+FROM books
+WHERE author_id = ANY (ARRAY[1, 2, 3]);
+
+-- ANY is treated as a single functional expression
+-- ANY works better with prepared statements
+PREPARE get_books_by_author(int[]) AS
+SELECT title
+FROM books
+WHERE author_id = ANY ($1);
+
+EXECUTE get_books_by_author(ARRAY[1,2,3,4,5]);
+
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+
+andy@[local]:5432 bigin# WITH user_oid AS (
+    SELECT
+        oid
+    FROM
+        pg_roles
+    WHERE
+        rolname = CURRENT_USER
+),
+db_oid AS (
+    SELECT
+        oid
+    FROM
+        pg_database
+    WHERE
+        datname = current_database())
+SELECT
+    query
+FROM
+    pg_stat_statements pgss
+    JOIN user_oid ON pgss.userid = user_oid.oid
+    JOIN db_oid ON pgss.dbid = db_oid.oid
+WHERE
+    pgss.query LIKE '%IN \(%';
+--                      query
+-- ------------------------------------------------
+--  WITH author_ids AS (                          +
+--  SELECT                                        +
+--      id                                        +
+--  FROM                                          +
+--      authors                                   +
+--  )                                             +
+--  select title from books                       +
+--  where author_id IN (select id from author_ids)
