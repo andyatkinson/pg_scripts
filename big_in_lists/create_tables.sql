@@ -112,7 +112,7 @@ select title from books
 where author_id < ANY(select id from author_ids where id <= 10); -- <- ANY
 
 
--- VALUES clause
+-- VALUES clause, CTE version
 EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
 WITH ids(author_id) AS (
   VALUES(1),(2),(3)
@@ -121,6 +121,21 @@ SELECT title
 FROM books
 JOIN ids USING (author_id);
 
+-- VALUES clause, subquery version
+EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
+SELECT title
+FROM books
+WHERE author_id IN (
+  SELECT id
+  FROM (VALUES(1),(2),(3)) AS v(id)
+);
+
+-- VALUES clause, subquery version, simplified
+SELECT title
+FROM books
+WHERE author_id IN (
+  VALUES(1),(2),(3)
+);
 
 -- Temp table
 CREATE TEMP TABLE temp_ids (author_id int);
@@ -130,16 +145,6 @@ CREATE INDEX ON temp_ids(author_id);
 SELECT title
 FROM books b
 JOIN temp_ids t ON t.author_id = b.author_id;
-
-
--- subquery version
-EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
-SELECT title
-FROM books
-WHERE author_id IN (
-  SELECT id
-  FROM (VALUES(1),(2),(3)) AS v(id)
-);
 
 
 -- ANY with an ARRAY
