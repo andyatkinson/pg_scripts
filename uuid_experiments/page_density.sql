@@ -38,3 +38,19 @@ SELECT
   ROUND(AVG(fill_percent)::numeric, 2) AS avg_leaf_fill_percent
 FROM leaf_pages
 GROUP BY idxname;
+
+-- After updates
+--  idxname       | avg_leaf_fill_percent
+-- ---------------------+-----------------------
+--  records_id_idx      |                 97.64
+--  records_uuid_v4_idx |                 79.06
+--  records_uuid_v7_idx |                 90.09
+-- (3 rows)
+--
+-- v4
+-- ⚠️ Implication:
+--
+-- Write amplification is high
+-- Index bloat will grow steadily over time
+-- You will eventually need a REINDEX or pg_repack to reclaim wasted space
+-- Poorer cache locality and lookup performance may follow
