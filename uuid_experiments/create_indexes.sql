@@ -1,8 +1,8 @@
 \timing on
 
-create index on records (id);
-create index on records (uuid_v4);
-create index on records (uuid_v7);
+create index on records (id);      -- records_id_idx
+create index on records (uuid_v4); -- records_uuid_v4_idx
+create index on records (uuid_v7); -- records_uuid_v7_idx
 vacuum analyze records;
 
 SELECT
