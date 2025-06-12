@@ -6,3 +6,8 @@
 1. page level locks
 1. pg_stat_io info that can be sampled
 1. tuple visibility pruning
+1. SLRU status
+
+
+## Try:
+1. Manual `VACUUM FREEZE` on hot tables
