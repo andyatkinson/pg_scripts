@@ -11,3 +11,35 @@
 
 ## Try:
 1. Manual `VACUUM FREEZE` on hot tables
+
+
+## pgbench simulation
+Tmux, two panes, pgbench installed, benchdb created, single table `pgxact_burner`
+
+```sql
+createdb benchdb;
+
+CREATE TABLE pgxact_burner (
+    id SERIAL PRIMARY KEY,
+    payload TEXT
+);
+
+INSERT INTO pgxact_burner (payload)
+SELECT repeat('x', 100)
+FROM generate_series(1, 10000);
+
+-- delete, then insert again, generate bloat
+DELETE FROM pgxact_burner;
+```
+
+
+This runs two loops, one collecting information, one running vacuums
+Tmux pane 1:
+(cntrl-b x to kill-pane when done)
+sh logging_events.sh
+
+Tmux pane 2:
+Generate load with pgbench:
+Run for 60 seconds, 20 clients (spikes CPU)
+pgbench -f bench.sql -T 60 -c 20 -j 2 benchdb
+
