@@ -66,3 +66,5 @@ Tmux pane 2:
 Generate load with pgbench:
 Run for 60 seconds, 20 clients (spikes CPU)
 `pgbench -f bench.sql -T 60 -c 20 -j 2 benchdb`
+
+NOTE: this manually runs VACUUM periodically in a second loop. This could be disabled though to focus only on when Autovacuum is triggered and runs VACUUM.
