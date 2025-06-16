@@ -77,6 +77,13 @@ loop1() {
                     OR extends <> 0));
       "
 
+      echo "-- pg_stat_io background writer --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+      SELECT * FROM pg_stat_io
+        WHERE backend_type = 'BackgroundWriter';
+      "
+
+
       echo "-- pg_stat_slru --"
       psql -d "$DB_NAME" -At -P expanded=off -c "
         SELECT * FROM pg_stat_slru;
