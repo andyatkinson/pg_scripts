@@ -14,6 +14,10 @@ GROUP BY
     mode;
 
 -- FREEZE
--- Selects aggressive “freezing” of tuples. Specifying FREEZE is equivalent to performing VACUUM with the vacuum_freeze_min_age and vacuum_freeze_table_age parameters set to zero. Aggressive freezing is always performed when the table is rewritten, so this option is redundant when FULL is specified.
+-- Selects aggressive “freezing” of tuples.
+-- Specifying FREEZE is equivalent to performing VACUUM with
+-- the vacuum_freeze_min_age and vacuum_freeze_table_age parameters set to zero.
+-- Aggressive freezing is always performed when the table is rewritten, 
+-- so this option is redundant when FULL is specified.
 
 

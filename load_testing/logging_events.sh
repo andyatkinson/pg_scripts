@@ -6,7 +6,6 @@ LOGFILE=pgbench_monitor_$(date +%Y%m%d_%H%M%S).log
 loop1() {
   while true; do
     {
-
       echo "===== Sample: $(date) ====="
       echo "-- System Load --"
       uptime
@@ -33,6 +32,54 @@ loop1() {
       psql -d "$DB_NAME" -At -P expanded=off -c "
         SELECT now(), n_dead_tup, vacuum_count
         FROM pg_stat_user_tables;
+      "
+
+      echo "-- cache ratio --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+        SELECT
+            now(),
+            blks_read,
+            blks_hit,
+            (blks_hit::float / NULLIF (blks_hit + blks_read, 0)) AS cache_hit_ratio
+        FROM
+            pg_stat_database
+        WHERE
+            datname = current_database();
+      "
+
+      echo "-- buffer locks / page access waits --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+        SELECT
+            now(),
+            pid,
+            usename,
+            wait_event_type,
+            wait_event,
+            query
+        FROM
+            pg_stat_activity
+        WHERE
+            wait_event IS NOT NULL
+            AND state != 'idle';
+      "
+
+      echo "-- pg_stat_io autovacuum worker --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+        SELECT
+            *
+        FROM
+            pg_stat_io
+        WHERE
+            backend_type = 'autovacuum worker'
+            OR (context = 'vacuum'
+                AND (reads <> 0
+                    OR writes <> 0
+                    OR extends <> 0));
+      "
+
+      echo "-- pg_stat_slru --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+        SELECT * FROM pg_stat_slru;
       "
 
       echo
