@@ -132,6 +132,18 @@ loop1() {
             mode;
       "
 
+      # See: connections_pg_stat_activity.sql
+      echo "-- connections count in use --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+      SELECT usename, state, count(*)
+        FROM pg_stat_activity
+        WHERE pid <> pg_backend_pid()  -- exclude your own session
+        AND state IS NOT NULL         -- exclude NULL states (likely background processes)
+        AND backend_type = 'client backend'
+        GROUP BY usename, state
+        ORDER BY COUNT(*) DESC;
+      "
+
       echo
     } >> "$LOGFILE" 2>&1
 
