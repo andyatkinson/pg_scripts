@@ -8,6 +8,8 @@ SELECT * FROM pg_stat_slru WHERE name = 'MultiXactMember' OR name = 'MultiXactOf
 SELECT * FROM pg_stat_slru;
 
 -- multixact age for all databases
+-- For multi-transaction, nested transactions aka subtransactions,
+-- use of "savepoint" etc.
 SELECT
     datname,
     age(datminmxid) AS multixact_age

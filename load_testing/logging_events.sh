@@ -83,7 +83,13 @@ loop1() {
       "
 
       echo "-- size of PGDATA/pg_xact --"
-      du -sh $PGDATA/pg_xact/
+      du -sh "$PGDATA/pg_xact/"
+
+      echo "-- statements growth --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+      SELECT sum(calls) AS total_statements_executed
+        FROM pg_stat_statements;
+      "
 
       echo
     } >> "$LOGFILE" 2>&1

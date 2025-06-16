@@ -33,13 +33,36 @@ DELETE FROM pgxact_burner;
 ```
 
 
+## Running tests
+Prereq:
+- Set PGDATA
+```sh
+export PGDATA="$(psql -U postgres \
+  -Atc 'SHOW data_directory')"
+echo "Set PGDATA: $PGDATA"
+```
+- Enable pg_stat_statements in DBNAME
+```sh
+psql -d $DBNAME
+create extension if not exists pg_stat_statements;
+```
+- Set values for DBNAME (defaults to benchdb)
+
+1. Clear out logs
+```sh
+rm pgbench_monitor*.log
+```
+
+2. Run events capture
 This runs two loops, one collecting information, one running vacuums
 Tmux pane 1:
 (cntrl-b x to kill-pane when done)
-sh logging_events.sh
+`sh logging_events.sh`
 
+Can tail this using `tail -f <logfile>`
+
+3. Generate system load using pgbench
 Tmux pane 2:
 Generate load with pgbench:
 Run for 60 seconds, 20 clients (spikes CPU)
-pgbench -f bench.sql -T 60 -c 20 -j 2 benchdb
-
+`pgbench -f bench.sql -T 60 -c 20 -j 2 benchdb`
