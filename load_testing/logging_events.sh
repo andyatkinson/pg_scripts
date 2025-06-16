@@ -6,7 +6,7 @@ LOGFILE=pgbench_monitor_$(date +%Y%m%d_%H%M%S).log
 loop1() {
   while true; do
     {
-      echo "===== Sample: $(date) ====="
+      echo "===== Sample: $(date -u +"%Y-%m-%dT%H:%M:%SZ") ====="
       echo "-- System Load --"
       uptime
 
@@ -100,7 +100,7 @@ loop1() {
         WHERE backend_type = 'BackgroundWriter';
       "
 
-
+      # See: pg_stat_slru_sample.sql
       echo "-- pg_stat_slru --"
       psql -d "$DB_NAME" -At -P expanded=off -c "
         SELECT * FROM pg_stat_slru;
