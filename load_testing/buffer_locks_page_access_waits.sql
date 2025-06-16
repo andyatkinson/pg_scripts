@@ -1,4 +1,5 @@
--- Buffer Locks / Page Access Waits (Query-Vacuum Contention)
+-- Investigation: Query-vacuum contention
+-- Buffer Locks / Page Access Waits
 SELECT
     now(),
     pid,

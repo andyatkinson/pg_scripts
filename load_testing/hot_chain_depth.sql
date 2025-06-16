@@ -1,5 +1,7 @@
+-- Investigate:
 -- Low ratio for hot_update_ratio below
 -- means long update chains, and more vacuum work
+-- Currently scoped to a single table, here it's "pgxact_burner"
 SELECT
   now(),
   relname,
@@ -9,4 +11,4 @@ SELECT
   n_tup_del,
   (n_tup_hot_upd::float / NULLIF(n_tup_upd, 0)) AS hot_update_ratio
 FROM pg_stat_user_tables
-WHERE relname = 'trips';
+WHERE relname = 'pgxact_burner';

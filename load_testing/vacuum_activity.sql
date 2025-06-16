@@ -1,3 +1,4 @@
+-- Collect data points
 -- Query pg_stat_progress_vacuum
 SELECT
   now(),

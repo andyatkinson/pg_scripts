@@ -10,6 +10,7 @@ loop1() {
       echo "-- System Load --"
       uptime
 
+      # See: vacuum_activity.sql
       echo "-- Vacuum Progress (or none) --"
       psql -d "$DB_NAME" -At -P expanded=off -c "
       SELECT pid, phase, heap_blks_total, heap_blks_scanned, heap_blks_vacuumed
@@ -28,13 +29,28 @@ loop1() {
         ORDER BY wait_count DESC;
       "
 
-      echo "-- Dead Tuples --"
+      echo "-- Dead Tuples count, vacuum count --"
       psql -d "$DB_NAME" -At -P expanded=off -c "
-        SELECT now(), n_dead_tup, vacuum_count
+        SELECT now(), relname, n_dead_tup, vacuum_count
         FROM pg_stat_user_tables;
       "
 
-      echo "-- cache ratio --"
+      echo "-- hot chain depth for benchmark table --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+        SELECT
+          now(),
+          relname,
+          n_tup_hot_upd, -- hot updates, we want as many as we can
+          n_tup_upd,
+          n_tup_ins,
+          n_tup_del,
+          (n_tup_hot_upd::float / NULLIF(n_tup_upd, 0)) AS hot_update_ratio
+        FROM pg_stat_user_tables
+        WHERE relname = 'pgxact_burner';
+      "
+
+      # See: buffer_cache_eviction_shared_buffers_pressure.sql
+      echo "-- buffer cache eviction / cache ratio --"
       psql -d "$DB_NAME" -At -P expanded=off -c "
         SELECT
             now(),
@@ -47,6 +63,7 @@ loop1() {
             datname = current_database();
       "
 
+      # See: buffer_locks_page_access_waits.sql
       echo "-- buffer locks / page access waits --"
       psql -d "$DB_NAME" -At -P expanded=off -c "
         SELECT
@@ -96,6 +113,23 @@ loop1() {
       psql -d "$DB_NAME" -At -P expanded=off -c "
       SELECT sum(calls) AS total_statements_executed
         FROM pg_stat_statements;
+      "
+
+      # See: page_level_locks.sql
+      echo "-- page_level_locks --"
+      psql -d "$DB_NAME" -At -P expanded=off -c "
+        SELECT
+            now(),
+            relation::regclass AS table_name,
+            mode,
+            COUNT(*) AS lock_count
+        FROM
+            pg_locks
+        WHERE
+            relation IS NOT NULL
+        GROUP BY
+            relation,
+            mode;
       "
 
       echo

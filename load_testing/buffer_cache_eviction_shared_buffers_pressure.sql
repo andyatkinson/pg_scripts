@@ -1,3 +1,4 @@
+-- Investigation:
 -- Sudden drop in cache_hit_ratio = buffer evictions,
 -- possibly caused by vacuum or query pressure.
 SELECT
