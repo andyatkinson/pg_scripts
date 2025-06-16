@@ -82,6 +82,9 @@ loop1() {
         SELECT * FROM pg_stat_slru;
       "
 
+      echo "-- size of PGDATA/pg_xact --"
+      du -sh $PGDATA/pg_xact/
+
       echo
     } >> "$LOGFILE" 2>&1
 
