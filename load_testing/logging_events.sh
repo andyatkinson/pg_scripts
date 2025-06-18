@@ -167,13 +167,13 @@ loop2() {
 
 # Start both loops in background and store their PIDs
 loop1 & pid1=$!
-loop2 & pid2=$!
+# loop2 & pid2=$!
 
 # Cleanup on Ctrl+C or termination
 cleanup() {
   echo "Cleaning up..."
   kill "$pid1" "$pid2" 2>/dev/null
-  wait "$pid1" "$pid2" 2>/dev/null
+  # wait "$pid1" "$pid2" 2>/dev/null
   echo "Done."
   exit 0
 }
