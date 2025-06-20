@@ -18,6 +18,9 @@ WHERE name IN (
   'autovacuum_vacuum_threshold',
   'autovacuum_vacuum_scale_factor',
   'autovacuum_vacuum_cost_delay',
+  'autovacuum_work_mem',
+  'autovacuum_vacuum_insert_threshold', -- 13+, 1000
+  'autovacuum_vacuum_insert_scale_factor', -- 13+, 0.02
   'backend_flush_after',
   'wal_buffers',
   'bgwriter_lru_maxpages',
