@@ -17,8 +17,12 @@ WHERE name IN (
   'autovacuum_vacuum_cost_limit',
   'autovacuum_vacuum_threshold',
   'autovacuum_vacuum_scale_factor',
+  'autovacuum_vacuum_cost_delay',
   'backend_flush_after',
   'wal_buffers',
   'bgwriter_lru_maxpages',
-  'bgwriter_lru_multiplier'
+  'bgwriter_lru_multiplier',
+  'log_autovacuum_min_duration',
+  'log_min_duration_statement', -- manual vacuums
+  'track_io_timing'
 );
