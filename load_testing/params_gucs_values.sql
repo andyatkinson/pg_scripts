@@ -29,3 +29,26 @@ WHERE name IN (
   'log_min_duration_statement', -- manual vacuums
   'track_io_timing'
 );
+
+-- Table storage parameters
+-- ALTER TABLE pgxact_burner
+-- SET (vacuum_truncate = off);
+
+-- Query table storage parameters
+-- SELECT
+--   n.nspname AS schema,
+--   c.relname AS table,
+--   reloptions
+-- FROM
+--   pg_class c
+-- JOIN
+--   pg_namespace n ON n.oid = c.relnamespace
+-- WHERE
+--   c.relkind = 'r'
+--   AND reloptions IS NOT NULL
+--   AND EXISTS (
+--     SELECT 1
+--     FROM unnest(c.reloptions) opt
+--     WHERE opt LIKE 'vacuum_truncate=%'
+--   )
+-- ORDER BY 1, 2;
