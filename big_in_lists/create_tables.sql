@@ -101,6 +101,7 @@ where author_id = SOME(select id from author_ids); -- <- SOME
 
 
 -- Using ANY with a "<" operator
+-- or = or other operators
 EXPLAIN (ANALYZE, BUFFERS, COSTS OFF)
 WITH author_ids AS (
 SELECT
@@ -110,6 +111,18 @@ FROM
 )
 select title from books
 where author_id < ANY(select id from author_ids where id <= 10); -- <- ANY
+
+
+-- unnest + ARRAY to make an array
+SELECT books.*
+FROM books
+WHERE author_id = ANY(
+  SELECT unnest(ARRAY(
+    SELECT id
+    FROM authors
+    WHERE id < 10
+  ))
+);
 
 
 -- VALUES clause, CTE version
