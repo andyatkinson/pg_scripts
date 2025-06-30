@@ -27,7 +27,9 @@ WHERE name IN (
   'bgwriter_lru_multiplier',
   'log_autovacuum_min_duration',
   'log_min_duration_statement', -- manual vacuums
-  'track_io_timing'
+  'track_io_timing',
+  'vacuum_freeze_min_age', -- default 50000000
+  'vacuum_freeze_table_age' -- default 150,000,000
 );
 
 -- Table storage parameters
