@@ -1,6 +1,6 @@
 # Postmortem Links
 
-# Anti-wraparound vacuum, DDL lock conflict, blocking queries
+# Triton: Anti-wraparound vacuum, DDL lock conflict, blocking queries
 Shared lock application queries got blocked on an exclusive lock.
 
 They discovered that VACUUM would run as an anti-wraparound (aggressive) type, and a normally
@@ -8,14 +8,36 @@ innocuous `DROP TRIGGER IF EXISTS` would require a conflicting exclusive lock, g
 acquisition requests from regular shared lock queries.
 
 > During the event, one of the shard databases had all queries on our primary table blocked by a three-way interaction between the data path queries that wanted shared locks, a "transaction wraparound" autovacuum that held a shared lock and ran for several hours, and an errant query that wanted an exclusive table lock.
+<https://www.tritondatacenter.com/blog/manta-postmortem-7-27-2015>
 
-- <https://www.tritondatacenter.com/blog/manta-postmortem-7-27-2015>
-
-# High water mark VACUUM TRUNCATE locking issue, blocking queries
+# Shane: High water mark VACUUM TRUNCATE locking issue, blocking queries
 - Large DELETE statement, COPY FROM STDIN, 16 HASH partitions
 - SELECTs would time out
 - TRUNCATE portion of Autovacuum
 - Queries wait on lock acquisition from exclusive lock for TRUNCATE portion of VACUUM
 - They added a logging script of the high water mark
+<https://shaneborden.com/2025/06/06/understanding-high-water-mark-locking-issues-in-postgresql-vacuums/>
 
-- <https://shaneborden.com/2025/06/06/understanding-high-water-mark-locking-issues-in-postgresql-vacuums/>
+# GitLab: Data Loss
+- Use of pg_basebackup intended for a replica, performed on primary
+<https://about.gitlab.com/blog/postmortem-of-database-outage-of-january-31/>
+
+# Hairy incident: Ardent Perf / Jeremy
+- Bad query plan, changed BitmapOr to BitmapAnd with a big IN list
+<https://ardentperf.com/2022/02/10/a-hairy-postgresql-incident/>
+
+# Figma: Long running query
+- Anti-wraparound Vacuum
+- Bad plan (mis-estimate, 20 million not 3), table scan, write to temp buffers
+- Planner: "Inner Unique: true"
+- Under-estimated selectivity of inner-most subquery
+<https://www.figma.com/blog/post-mortem-service-disruption-on-january-21-22-2020/>
+
+# PgBackups: Lock conflict
+- Lock conflict, exclusive lock for PgBackups (pg_dump -j) held,
+exclusive lock used for DDL migration (add column, NOT NULL constraint, default 0)
+<https://gist.github.com/dwbutler/1034446c1aba231ca8d8639d3be78c6b>
+
+
+## Slides
+- Amazing! Keiko Oda: Exploring Postgres VACUUM with the VACUUM Simulator <https://speakerdeck.com/keiko713/exploring-postgres-vacuum-with-the-vacuum-simulator>
