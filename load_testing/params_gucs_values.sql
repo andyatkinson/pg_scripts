@@ -29,7 +29,8 @@ WHERE name IN (
   'log_min_duration_statement', -- manual vacuums
   'track_io_timing',
   'vacuum_freeze_min_age', -- default 50000000
-  'vacuum_freeze_table_age' -- default 150,000,000
+  'vacuum_freeze_table_age', -- default 150,000,000
+  'hot_standby_feedback' -- some possible issues if "on"
 );
 
 -- Table storage parameters
