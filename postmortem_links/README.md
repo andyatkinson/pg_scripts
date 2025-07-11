@@ -22,6 +22,10 @@ acquisition requests from regular shared lock queries.
 - Use of pg_basebackup intended for a replica, performed on primary
 <https://about.gitlab.com/blog/postmortem-of-database-outage-of-january-31/>
 
+# GitLab: Subtrans SLRU overflow
+> There are 32 (NUM_SUBTRANS_BUFFERS) pages, which means up to 65K transaction IDs can be stored in memory. Nikolay demonstrated that in a busy system, it took about 18 seconds to fill up all 65K entries. Then performance dropped off a cliff, making the database replicas unusable.
+<https://about.gitlab.com/blog/why-we-spent-the-last-month-eliminating-postgresql-subtransactions/>
+
 # Hairy incident: Ardent Perf / Jeremy
 - Bad query plan, changed BitmapOr to BitmapAnd with a big IN list
 <https://ardentperf.com/2022/02/10/a-hairy-postgresql-incident/>
