@@ -42,6 +42,14 @@ acquisition requests from regular shared lock queries.
 exclusive lock used for DDL migration (add column, NOT NULL constraint, default 0)
 <https://gist.github.com/dwbutler/1034446c1aba231ca8d8639d3be78c6b>
 
+# Metronome: Root Cause Analysis: PostgreSQL MultiXact member exhaustion incidents (May 2025)
+- crossed a previously unknown and difficult to monitor global limit on MultiXact members
+<https://metronome.com/blog/root-cause-analysis-postgresql-multixact-member-exhaustion-incidents-may-2025?utm_campaign=rca-may-2025&utm_medium=social&utm_source=linkedin&utm_content=>
+
+# Postgres “almost” Outage Postmortem: The Hidden Dangers of Replication Slots and Autovacuum
+- Inactive logical replication slots
+- Holding WAL files forever
+<https://dev.to/sasikumart/postgres-almost-outage-postmortem-the-hidden-dangers-of-replication-slots-and-autovacuum-2nem>
 
 ## Slides
 - Amazing! Keiko Oda: Exploring Postgres VACUUM with the VACUUM Simulator <https://speakerdeck.com/keiko713/exploring-postgres-vacuum-with-the-vacuum-simulator>
