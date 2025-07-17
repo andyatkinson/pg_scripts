@@ -51,5 +51,15 @@ exclusive lock used for DDL migration (add column, NOT NULL constraint, default 
 - Holding WAL files forever
 <https://dev.to/sasikumart/postgres-almost-outage-postmortem-the-hidden-dangers-of-replication-slots-and-autovacuum-2nem>
 
+# Sentry: Transaction ID Wraparound
+<https://blog.sentry.io/transaction-id-wraparound-in-postgres/>
+
+# Mailchimp: Transaction ID Wraparound
+<https://mailchimp.com/what-we-learned-from-the-recent-mandrill-outage/>
+
+# go-yubi.com: Unveiling the Mysteries of Production PostgreSQL Storage Issues: A Root Cause Analysis
+- a surge in CPU utilization, jeopardizing system stability, chiefly stemming from heightened read operations on TOAST data.
+<https://www.go-yubi.com/blog/unveiling-the-mysteries-of-production-postgresql-storage-issues-a-root-cause-analysis/>
+
 ## Slides
 - Amazing! Keiko Oda: Exploring Postgres VACUUM with the VACUUM Simulator <https://speakerdeck.com/keiko713/exploring-postgres-vacuum-with-the-vacuum-simulator>
