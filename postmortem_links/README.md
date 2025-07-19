@@ -61,5 +61,8 @@ exclusive lock used for DDL migration (add column, NOT NULL constraint, default 
 - a surge in CPU utilization, jeopardizing system stability, chiefly stemming from heightened read operations on TOAST data.
 <https://www.go-yubi.com/blog/unveiling-the-mysteries-of-production-postgresql-storage-issues-a-root-cause-analysis/>
 
+# The Life of a Bug: From Customer Escalation to PostgreSQL commit
+- <https://www.enterprisedb.com/blog/life-bug-customer-escalation-postgresql-commit>
+
 ## Slides
 - Amazing! Keiko Oda: Exploring Postgres VACUUM with the VACUUM Simulator <https://speakerdeck.com/keiko713/exploring-postgres-vacuum-with-the-vacuum-simulator>
