@@ -11,7 +11,7 @@ WHERE schemaname = 'public' -- change schema name, i.e. 'rideshare' if not 'publ
   -- AND 50 * seq_scan > idx_scan -- more than 2%, add filters to narrow down results
   -- AND n_live_tup > 10000 -- narrow down results for bigger tables
   -- AND pg_relation_size(relname::REGCLASS) > 5000000
-ORDER BY totalseqscan DESC;
+ORDER BY seq_scan DESC;
 
 
 -- missing indexes from GCP docs:
