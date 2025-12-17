@@ -12,5 +12,4 @@ SELECT
   ai.relname,
   ai.indexrelname
 FROM pg_stat_progress_create_index p
-JOIN pg_stat_activity a ON p.pid = a.pid
 LEFT JOIN pg_stat_all_indexes ai on ai.relid = p.relid AND ai.indexrelid = p.index_relid;
