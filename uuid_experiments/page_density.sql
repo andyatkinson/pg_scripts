@@ -10,6 +10,8 @@ WITH index_info AS (
   SELECT 'records_uuid_v4_idx'::text
   UNION ALL
   SELECT 'records_uuid_v7_idx'::text
+  UNION ALL
+  SELECT 'records_uuid_v1_idx'::text
 ),
 page_counts AS (
   SELECT
@@ -42,6 +44,7 @@ SELECT
 FROM leaf_pages
 GROUP BY idxname;
 
+-- Results from Postgres 16 w/o UUID v1:
 -- After updates
 --  idxname       | avg_leaf_fill_percent
 -- ---------------------+-----------------------

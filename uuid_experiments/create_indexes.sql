@@ -3,7 +3,9 @@
 create index on records (id);      -- records_id_idx
 create index on records (uuid_v4); -- records_uuid_v4_idx
 create index on records (uuid_v7); -- records_uuid_v7_idx
+create index on records (uuid_v1); -- records_uuid_v1_idx
 vacuum analyze records;
+
 
 SELECT
     relname,
@@ -16,3 +18,5 @@ WHERE
 
 EXPLAIN (BUFFERS, ANALYZE, TIMING OFF) SELECT COUNT(id) FROM records;
 EXPLAIN (BUFFERS, ANALYZE, TIMING OFF) SELECT COUNT(uuid_v4) FROM records;
+EXPLAIN (BUFFERS, ANALYZE, TIMING OFF) SELECT COUNT(uuid_v7) FROM records;
+EXPLAIN (BUFFERS, ANALYZE, TIMING OFF) SELECT COUNT(uuid_v1) FROM records;
