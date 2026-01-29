@@ -60,3 +60,13 @@ GROUP BY idxname;
 -- Index bloat will grow steadily over time
 -- You will eventually need a REINDEX or pg_repack to reclaim wasted space
 -- Poorer cache locality and lookup performance may follow
+
+
+-- Postgres 18 after 1m UPDATEs
+--        idxname       | avg_leaf_fill_percent
+-- ---------------------+-----------------------
+--  records_id_idx      |                 97.54
+--  records_uuid_v1_idx |                 86.43
+--  records_uuid_v4_idx |                 79.15
+--  records_uuid_v7_idx |                 90.09
+-- (4 rows)
