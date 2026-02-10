@@ -1,14 +1,14 @@
 ## UUID v1 and V7 Results
 
-UUID v1 and v7 both support ordering but achieve ordering differently.
+UUID v1 and v7 both support ordering but represent time differently.
 
-The hypothesis was that V7 would be more efficient.
+The hypothesis was that v7 would be more efficient, stored in fewer pages than v1 values.
 
-Between uuid v1 and v7, I saw the execution time of this query being similar, after all both have their pages loaded into buffer cache and the pages are served from memory.
+Between uuid v1 and v7, I saw similar execution times for the `COUNT()` query, both with their pages loaded in buffer cache, fast memory access.
 
-However we can see for uuid v1 there are MANY more buffers (pages) accessed (shared hits), while reads were about the same. This we can conclude that V7 can store its data in fewer pages more densely, and is more efficient.
+However we can see for v1 there are *MANY* more buffers/pages accessed to do that from the "shared hits" figures . Thus we can conclude for v7 the equivalent data is stored more efficiently in fewer pages.
 
-Please feel free to reproduce these results and send any questions or objections.
+If you reproduce these results, please send any questions or objections as a PR or issue for this project. Thanks.
 
 ## Buffers information
 - v1: shared hit=303389 read=38326
