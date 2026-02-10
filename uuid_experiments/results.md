@@ -1,10 +1,18 @@
-## Results
+## UUID v1 and V7 Results
 
-Between uuid v1 and v7, the execution time of this query was similar, all the buffers were warmed using pg_prewarm,
-however we can see for uuid v1 there are MANY more buffers accessed (hits), while reads were about the same.
+UUID v1 and v7 both support ordering but achieve ordering differently.
 
-v1: shared hit=303389 read=38326
-v7: shared hit=26 read=38318
+The hypothesis was that V7 would be more efficient.
+
+Between uuid v1 and v7, I saw the execution time of this query being similar, after all both have their pages loaded into buffer cache and the pages are served from memory.
+
+However we can see for uuid v1 there are MANY more buffers (pages) accessed (shared hits), while reads were about the same. This we can conclude that V7 can store its data in fewer pages more densely, and is more efficient.
+
+Please feel free to reproduce these results and send any questions or objections.
+
+## Buffers information
+- v1: shared hit=303389 read=38326
+- v7: shared hit=26 read=38318
 
 
 ```sql
@@ -28,6 +36,9 @@ pg18> EXPLAIN (BUFFERS, ANALYZE, TIMING OFF) SELECT COUNT(uuid_v1) FROM records;
 (14 rows)
 
 Time: 352.935 ms
+```
+
+```sql
 pg18> EXPLAIN (BUFFERS, ANALYZE, TIMING OFF) SELECT COUNT(uuid_v7) FROM records;
                                                                            QUERY PLAN
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
