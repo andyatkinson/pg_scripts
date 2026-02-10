@@ -1,4 +1,4 @@
-## UUID v1 and V7 Results
+## UUID v1 and v7 Results
 
 UUID v1 and v7 both support ordering but represent time differently.
 
