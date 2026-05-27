@@ -29,9 +29,10 @@ index_item_sizes AS (
     /* data len: we remove null values save space using it fractionnal part from stats */
     sum( (1-coalesce(s.stanullfrac, 0)) * coalesce(s.stawidth, 2048) ) AS nulldatawidth
     FROM pg_attribute AS a
-    JOIN pg_statistic AS s ON s.starelid=a.attrelid AND s.staattnum = a.attnum
+    JOIN pg_stats pgs
     JOIN btree_index_atts AS i ON i.indrelid = a.attrelid AND a.attnum = i.attnum
     WHERE a.attnum > 0
+    AND pgs.schemaname = 'public'
     GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
 ),
 index_aligned AS (
