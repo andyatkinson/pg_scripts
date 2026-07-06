@@ -35,29 +35,29 @@ DO_NOT_RENAME_THESE_TABLES="('table1','table2')" # Use SQL IN format, e.g. ('tab
 echo "Seeing if we can connect"
 docker exec -it -e PGPASSWORD=$PG_PASSWORD -e PGDATABASE=$DB_NAME -e PGUSER=$PG_USER pg18 psql -c "select 'can connect'"
 
-# echo "Performing big rename"
-# docker exec -it -e PGPASSWORD=$PG_PASSWORD -e PGDATABASE=$DB_NAME -e PGUSER=$PG_USER pg18 psql -c "
-# DO \$\$
-# DECLARE
-#   t record;
-#   new_name text;
-# BEGIN
-#   FOR t IN
-#     SELECT tablename
-#     FROM pg_tables
-#     WHERE schemaname = 'public'
-#     AND tablename NOT IN $DO_NOT_RENAME_THESE_TABLES
-#   LOOP
-#     new_name := '__unused__' || t.tablename;
-#     RAISE NOTICE 'Renaming table % to %', t.tablename, new_name;
-#     EXECUTE format(
-#       'ALTER TABLE public.%I RENAME TO %I',
-#       t.tablename,
-#       new_name
-#     );
-#   END LOOP;
-# END \$\$;
-# "
+echo "Performing big rename"
+docker exec -it -e PGPASSWORD=$PG_PASSWORD -e PGDATABASE=$DB_NAME -e PGUSER=$PG_USER pg18 psql -c "
+DO \$\$
+DECLARE
+  t record;
+  new_name text;
+BEGIN
+  FOR t IN
+    SELECT tablename
+    FROM pg_tables
+    WHERE schemaname = 'public'
+    AND tablename NOT IN $DO_NOT_RENAME_THESE_TABLES
+  LOOP
+    new_name := '__unused__' || t.tablename;
+    RAISE NOTICE 'Renaming table % to %', t.tablename, new_name;
+    EXECUTE format(
+      'ALTER TABLE public.%I RENAME TO %I',
+      t.tablename,
+      new_name
+    );
+  END LOOP;
+END \$\$;
+"
 
 #=================
 # UNCOMMENT THIS TO UNDO/REVERSE ABOVE
